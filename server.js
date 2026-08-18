@@ -3,7 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./db/db.js";
 import cookieParser from "cookie-parser";
-
+import authRouter from "./route/authRoutes.js";
+import coursesRouter from "./route/coursesRoute.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -43,6 +44,8 @@ app.use(
   }),
 );
 app.use(express.json());
+app.use("/api/auth", authRouter);
+app.use("/api/courses", coursesRouter);
 
 // ===============================Route==========================================
 app.get("/", (req, res) => {
